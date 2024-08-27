@@ -26,3 +26,6 @@
 - `articles.json`: 包含文章內容和圖片的數據，用於動態生成文章列表及內容。
 - `categories.json`: 包含所有產品類別的數據，用於動態生成分類菜單。
 - `products.json`: 包含產品詳細信息的數據，用於在網頁上顯示產品列表。
+
+## Penrote筆樂官網原型
+- (https://www.penrote.com.tw)
