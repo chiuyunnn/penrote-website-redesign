@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>最新消息</title>
+    <link rel="stylesheet" href="news.css">
+    <link rel="icon" href="img/icon.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a2e1d963ab.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="header">
+            <div class="penrote-logo">
+                <a href="index.html"><img src="img/penrote-logo-red.png" width="200" id="logoimg"></a>
+            </div>
+            <div id="nav">
+                <ul class="inline-block-nav">
+                    <li><a href="about.html">關於筆樂</a></li>
+                    <li><a href="product.html">商品介紹</a></li>
+                    <li><a href="news.html">最新消息</a></li>
+                    <li><a href="contact.html">聯絡我們</a></li>
+                </ul>
+            </div>
+            <div id="link">
+                <ul class="inline-block-link">
+                    <li class="facebook"><a href="https://www.facebook.com/PENROTE" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li class="instagram"><a href="https://www.instagram.com/penrote_tw/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li class="line"><a href="https://manager.line.biz/account/@kmn4559f" target="_blank"><i class="fa-brands fa-line"></i></a></li>
+                    <li class="shop"><a href="https://www.shidaihouse.com" target="_blank"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                </ul>
+            </div>
+            <div id="search">
+                <input type="search" id="input" placeholder="搜尋商品" v-model="searchQuery" ref="input"/>
+                <button class="search-btn" @click="performSearch">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="news-article">
+            <div class="news">
+                <h2><i class="fa-regular fa-clock"></i>最新消息</h2>
+            </div>
+            <div class="article-list">
+                <!-- 文章項目將在這裡動態加載 -->
+            </div>
+        </div>
+        <!-- 模態窗口 -->
+        <div id="articleModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 class="modal-title"></h2>
+                <div class="modal-thumbnails"></div>
+                <div class="modal-articles"></div>
+            </div>
+        </div>
+
+        <footer id="footer">
+            <p>&copy; 2024 Penrote All rights reserved 丞儀企業有限公司</p>
+        </footer>
+        <a href="#" class="back-to-top" id="backToTopBtn">
+            <i class="fa-solid fa-circle-chevron-up"></i>
+        </a>
+        <script src="news.js"></script>
+    </div>
+</body>
+
+</html>

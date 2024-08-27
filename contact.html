@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聯絡我們</title>
+    <link rel="stylesheet" href="contact.css">
+    <link rel="icon" href="img/icon.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a2e1d963ab.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="header">
+            <div class="penrote-logo">
+                <a href="index.html"><img src="img/penrote-logo-red.png" width="200" id="logoimg"></a>
+            </div>
+            <div id="nav">
+                <ul class="inline-block-nav">
+                    <li><a href="about.html">關於筆樂</a></li>
+                    <li><a href="product.html">商品介紹</a></li>
+                    <li><a href="news.html">最新消息</a></li>
+                    <li><a href="contact.html">聯絡我們</a></li>
+                </ul>
+            </div>
+            <div id="link">
+                <ul class="inline-block-link">
+                    <li class="facebook"><a href="https://www.facebook.com/PENROTE" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li class="instagram"><a href="https://www.instagram.com/penrote_tw/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li class="line"><a href="https://manager.line.biz/account/@kmn4559f" target="_blank"><i class="fa-brands fa-line"></i></a></li>
+                    <li class="shop"><a href="https://www.shidaihouse.com" target="_blank"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                </ul>
+            </div>
+            <div id="search">
+                <input type="search" id="input" placeholder="搜尋商品" v-model="searchQuery" ref="input"/>
+                <button class="search-btn" @click="performSearch">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14463.328734307532!2d121.5989082!3d25.0058177!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442aaef250aecc3%3A0xb7e3d96725913a2f!2z5Lie5YSA5LyB5qWt5pyJ6ZmQ5YWs5Y-4!5e0!3m2!1szh-TW!2stw!4v1723557813701!5m2!1szh-TW!2stw" width="350" height="450" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="contact">
+            <h2><i class="fa-solid fa-phone"></i>聯絡我們</h2>
+            <address id="address">
+                <p>信箱｜ <a href=mailto:penrote.mail@msa.hinet.net>penrote.mail@msa.hinet.net</a></p>
+                <p>電話｜ <a href="tel:886-2-26643370">886-2-26643370</a></p>
+                <p>地址｜ <a href="https://maps.app.goo.gl/FGLSwN8qyURrgBYB7" target="_blank">222 新北市深坑區北深路3段270巷16之3號1樓</a></p>
+            </address>
+            <hr>
+            <p>若有任何疑問或需要幫助，請隨時與我們聯繫，我們將竭誠為您服務。</p>
+        </div>
+        <footer id="footer">
+            <p>&copy; 2024 Penrote All rights reserved 丞儀企業有限公司</p>
+        </footer>
+        <a href="#" class="back-to-top" id="backToTopBtn">
+            <i class="fa-solid fa-circle-chevron-up"></i>
+        </a>
+
+    </div>
+    <script src="contact.js"></script>
+
+
+</body></html>

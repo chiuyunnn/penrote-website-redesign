@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Penrote 筆樂</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" href="img/icon.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a2e1d963ab.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="header">
+            <div class="penrote-logo">
+                <a href="index.html"><img src="img/penrote-logo-red.png" width="200" id="logoimg"></a>
+            </div>
+            <div id="nav">
+                <ul class="inline-block-nav">
+                    <li><a href="about.html">關於筆樂</a></li>
+                    <li><a href="product.html">商品介紹</a></li>
+                    <li><a href="news.html">最新消息</a></li>
+                    <li><a href="contact.html">聯絡我們</a></li>
+                </ul>
+            </div>
+            <div id="link">
+                <ul class="inline-block-link">
+                    <li class="facebook"><a href="https://www.facebook.com/PENROTE" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li class="instagram"><a href="https://www.instagram.com/penrote_tw/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li class="line"><a href="https://manager.line.biz/account/@kmn4559f" target="_blank"><i class="fa-brands fa-line"></i></a></li>
+                    <li class="shop"><a href="https://www.shidaihouse.com" target="_blank"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                </ul>
+            </div>
+            <div id="search">
+                <input type="search" id="input" placeholder="搜尋商品" v-model="searchQuery" ref="input"/>
+                <button class="search-btn">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="img/banner01.jpg" class="slide active">
+                <img src="img/banner02.jpg" class="slide">
+                <img src="img/banner03.jpg" class="slide">
+                <img src="img/banner04.jpg" class="slide">
+                <img src="img/banner05.jpg" class="slide">
+            </div>
+            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="next" onclick="changeSlide(1)">&#10095;</button>
+            <div class="carousel-dots">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+            </div>
+        </div>
+
+        <section class="products">
+            <h1>Products ｜ 產品分類</h1>
+            <div class="list">
+                <div class="category" data-category="writing-tools">
+                    <img src="img/writing.jpg" width="100" height="100" alt="書寫工具">
+                    <h4>書寫工具</h4>
+                </div>
+                <div class="category" data-category="correction">
+                    <img src="img/correction.jpg" width="100" height="100" alt="修正剪裁">
+                    <h4>修正剪裁</h4>
+                </div>
+                <div class="category" data-category="art-materials">
+                    <img src="img/artmaterials.jpg" width="100" height="100" alt="美術畫材">
+                    <h4>美術畫材</h4>
+                </div>
+                <div class="category" data-category="binding-pasting">
+                    <img src="img/bindingpasting.jpg" width="100" height="100" alt="裝訂黏貼">
+                    <h4>裝訂黏貼</h4>
+                </div>
+                <div class="category" data-category="office-supplies">
+                    <img src="img/officesupplies.jpg" width="100" height="100" alt="事務用品">
+                    <h4>事務用品</h4>
+                </div>
+                <div class="category" data-category="organize">
+                    <img src="img/organize.jpg" width="100" height="100" alt="收納用具">
+                    <h4>收納用具</h4>
+                </div>
+                <div class="category" data-category="theme-products">
+                    <img src="img/theme.jpg" width="100" height="100" alt="主題商品">
+                    <h4>主題商品</h4>
+                </div>
+                <div class="category" data-category="customized-products">
+                    <img src="img/customized.jpg" width="100" height="100" alt="客訂商品">
+                    <h4>客訂商品</h4>
+                </div>
+            </div>
+        </section>
+        <footer id="footer">
+            <p>&copy; 2024 Penrote All rights reserved 丞儀企業有限公司</p>
+        </footer>
+        <a href="#" class="back-to-top" id="backToTopBtn">
+            <i class="fa-solid fa-circle-chevron-up"></i>
+        </a>
+
+    </div>
+    <script src="main.js"></script>
+
+</body>
+
+</html>
