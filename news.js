@@ -140,3 +140,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('input');
+    const searchButton = document.querySelector('.search-btn');
+
+    // 監聽輸入框的 Enter 鍵事件
+    searchInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    // 監聽搜尋按鈕的點擊事件
+    searchButton.addEventListener('click', () => {
+        performSearch();
+    });
+
+    function performSearch() {
+        const query = searchInput.value.trim();
+        if (query) {
+            // 導向商品頁並傳遞搜尋查詢參數
+            window.location.href = `product.html?search=${encodeURIComponent(query)}`;
+        }
+    }
+});

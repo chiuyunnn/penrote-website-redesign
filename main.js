@@ -98,58 +98,88 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Handle scroll-triggered animation
 document.addEventListener('DOMContentLoaded', () => {
     const product = document.querySelector('.products');
 
-    function handleScroll() {
-        const productRect = product.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const triggerPoint = viewportHeight * 0.7;
+    function setupIntersectionObserver() {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.remove('visible');
+                }
+            });
+        }, {
+            threshold: 0.3 // 當元素的 30% 進入視口時觸發
+        });
 
-        if (productRect.top < triggerPoint && productRect.bottom > 0) {
-            product.classList.add('visible');
-            setTimeout(() => {
-                product.classList.remove('visible');
-                requestAnimationFrame(() => {
-                    product.classList.add('visible');
-                });
-            }, 50);
-        } else {
-            product.classList.remove('visible');
+        if (product) {
+            observer.observe(product);
         }
     }
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // 初次載入時檢查
+    setupIntersectionObserver();
 });
 
+
+    
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('input');
+    const searchButton = document.querySelector('.search-btn');
+
+    // 监听输入框的 Enter 键事件
+    searchInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    // 监听搜索按钮的点击事件
+    searchButton.addEventListener('click', () => {
+        performSearch();
+    });
+
+    function performSearch() {
+        const query = searchInput.value.trim();
+        if (query) {
+            // 导向商品页面并传递搜索查询参数
+            window.location.href = `product.html?search=${encodeURIComponent(query)}`;
+        }
+    }
+});
+
+
+
 new Vue({
-    el: '#search',
+    el: '#app',
     data: {
-        searchQuery: '' // 存储搜索查询
-    },
-    methods: {
-        performSearch() {
-            if (this.searchQuery.trim()) {
-                // 使用 encodeURIComponent 对搜索查询进行编码
-                const query = encodeURIComponent(this.searchQuery.trim());
-                window.location.href = `product.html?search=${query}`;
-            }
+        categories: [], // 存储类别数据
+        categoryImages: {
+            "1": "img/writing.jpg",
+            "2": "img/correction.jpg",
+            "3": "img/artmaterials.jpg",
+            "4": "img/bindingpasting.jpg",
+            "5": "img/officesupplies.jpg",
+            "6": "img/organize.jpg",
+            "7": "img/measuring.jpg",
+            "8": "img/theme.jpg",
+            "9": "img/customized.jpg"
         }
     },
     mounted() {
-        // 监听输入框的 keypress 事件
-        this.$refs.input.addEventListener('keypress', (event) => {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // 防止默认行为（如提交表单）
-                this.performSearch(); // 执行搜索
-            }
-        });
-
-        // 监听搜索按钮的点击事件
-        document.querySelector('.search-btn').addEventListener('click', () => {
-            this.performSearch(); // 执行搜索
-        });
+        // 加载类别数据
+        fetch('categories.json')
+            .then(response => response.json())
+            .then(data => {
+                this.categories = data.categories.filter(category => !category.parent);
+            })
+            .catch(error => console.error('Error loading categories JSON:', error));
+    },
+    methods: {
+        goToProductPage(categoryId) {
+            // 導向商品頁，並傳遞所選的類別 ID
+            window.location.href = `product.html?category=${categoryId}`;
+        }
     }
 });

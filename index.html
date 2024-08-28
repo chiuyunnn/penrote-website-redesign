@@ -38,7 +38,7 @@
                 </ul>
             </div>
             <div id="search">
-                <input type="search" id="input" placeholder="搜尋商品" v-model="searchQuery" ref="input"/>
+                <input type="search" id="input" placeholder="搜尋商品">
                 <button class="search-btn">
                     <i class="fa fa-search"></i>
                 </button>
@@ -63,43 +63,19 @@
             </div>
         </div>
 
-        <section class="products">
-            <h1>Products ｜ 產品分類</h1>
-            <div class="list">
-                <div class="category" data-category="writing-tools">
-                    <img src="img/writing.jpg" width="100" height="100" alt="書寫工具">
-                    <h4>書寫工具</h4>
+        <div id="app">
+            <section class="products">
+                <h1>Products ｜ 產品分類</h1>
+                <div class="list">
+                    <!-- Vue.js 會動態插入類別項目到這裡 -->
+                    <div v-for="category in categories" :key="category.id" class="category" @click="goToProductPage(category.id)">
+                        <img :src="categoryImages[category.id] || 'img/default.jpg'" width="100" height="100" />
+                        <h4>{{ category.name }}</h4>
+                    </div>
                 </div>
-                <div class="category" data-category="correction">
-                    <img src="img/correction.jpg" width="100" height="100" alt="修正剪裁">
-                    <h4>修正剪裁</h4>
-                </div>
-                <div class="category" data-category="art-materials">
-                    <img src="img/artmaterials.jpg" width="100" height="100" alt="美術畫材">
-                    <h4>美術畫材</h4>
-                </div>
-                <div class="category" data-category="binding-pasting">
-                    <img src="img/bindingpasting.jpg" width="100" height="100" alt="裝訂黏貼">
-                    <h4>裝訂黏貼</h4>
-                </div>
-                <div class="category" data-category="office-supplies">
-                    <img src="img/officesupplies.jpg" width="100" height="100" alt="事務用品">
-                    <h4>事務用品</h4>
-                </div>
-                <div class="category" data-category="organize">
-                    <img src="img/organize.jpg" width="100" height="100" alt="收納用具">
-                    <h4>收納用具</h4>
-                </div>
-                <div class="category" data-category="theme-products">
-                    <img src="img/theme.jpg" width="100" height="100" alt="主題商品">
-                    <h4>主題商品</h4>
-                </div>
-                <div class="category" data-category="customized-products">
-                    <img src="img/customized.jpg" width="100" height="100" alt="客訂商品">
-                    <h4>客訂商品</h4>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
+        
         <footer id="footer">
             <p>&copy; 2024 Penrote All rights reserved 丞儀企業有限公司</p>
         </footer>
