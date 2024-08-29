@@ -44,6 +44,25 @@
                 </button>
             </div>
         </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">首頁</a></li>
+            <!-- 父类面包屑 -->
+            <!-- 子类面包屑 -->
+        </ol>
+        <div id="app">
+            <div class="container">
+                <div class="thumbnails"></div>
+                <div class="image-scroll"></div>
+            </div>
+            <div class="products" v-if="product">
+                <h2 class="name">{{ product.name }}</h2>
+                <h4 class="model">型號｜{{ product.model }}</h4>
+                <h4 class="feature">商品特色</h4>
+                <p v-html="product.feature"></p>
+                <h5 class="price">建議售價｜{{ product.price }}</h5>
+            </div>
+        </div>
+        
         <footer id="footer">
             <p>&copy; 2024 Penrote All rights reserved 丞儀企業有限公司</p>
         </footer>

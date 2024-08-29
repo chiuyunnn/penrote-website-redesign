@@ -1,5 +1,5 @@
 * {
-    /*   border: solid 1px black*/
+    /* border: solid 1px black; */
     font-family: "Noto Sans TC", sans-serif;
     letter-spacing: 2px;
 }
@@ -178,6 +178,129 @@ i {
 .search-btn :hover {
     opacity: 0.8;
 }
+
+
+.breadcrumbs-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.breadcrumb {
+    display: inline-block;
+    margin-top: 140px;
+    margin-left: 165px;
+}
+
+.breadcrumb-item {
+    display: inline;
+    font-size: 14px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    padding: 0 8px;
+    color: var(--bs-gray);
+}
+
+.breadcrumb-item a {
+    text-decoration: none;
+    color: var(--bs-gray);
+    opacity: 0.7;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+    color: var(--bs-red);
+}
+
+
+.container{
+    display: flex;
+    width: 480px; 
+    margin-left: 195px;
+    margin-top: 35px;
+  }
+  
+  .thumbnails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    height: 360px;
+    width: 120px;
+  }
+  
+  .thumbnails img {
+    cursor: pointer;
+    margin-bottom: 12px;
+    margin-right: 12px;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease;
+  }
+  
+  .thumbnails img.inactive {
+    opacity: 0.5; /* 半透明灰色遮罩 */
+  }
+  
+  
+  .image-scroll {
+    overflow-y: auto; 
+    height: 360px;    
+    width: 450px;     
+    border: 1px solid #ccc; 
+  }
+  
+  
+  .image-scroll img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .products{
+    width:420px;
+    display: inline-block;
+    position: relative;
+    top:-365px;
+    left:760px;
+  }
+
+  .products .name{
+    color:var(--bs-gray);
+    font-weight: 600;
+  }
+
+  .products .model{
+    color:var(--bs-gray);
+    margin-bottom: 40px;
+    font-weight: 500;
+    margin-top: -5px;
+  }
+
+  .products .feature{
+    color:var(--bs-gray);
+    font-weight: 600;
+  }
+
+  .products .price{
+    color:var(--bs-gray);
+    float: right;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .products p{
+    line-height: 2.5;
+    border-left: solid 2px #ddd;
+    padding-left: 15px;
+    color:var(--bs-gray);
+  }
+  
 
 #footer {
     background-color: #f8f9fa;

@@ -3,13 +3,29 @@
         "name": "萌萌動物中性筆",
         "model": "PC1205",
         "image": "https://www.penrote.com.tw/wp-content/uploads/2024/07/PC1205-萌萌動物中性筆-新品圖-01-1024x1024.jpg",
-        "category": "1,1-4,8,8-2"
+        "category": "1,1-4,8,8-2",
+        "feature":"大容量筆芯，速乾油墨<br>ST筆頭書寫筆記舒服又滑順<br>可愛小動物，療癒身心靈🐼🐰🐵🐧",
+        "price":"30元/支",
+        "images": [
+            "https://www.penrote.com.tw/wp-content/uploads/2024/07/PC1205-萌萌動物中性筆-新品圖-01-1024x1024.jpg",
+            "https://www.penrote.com.tw/wp-content/uploads/2024/07/PC1205-萌萌動物中性筆-新品圖-02-1024x1024.jpg",
+            "https://www.penrote.com.tw/wp-content/uploads/2024/07/IMG_7613-1024x1024.jpg",
+            "https://www.penrote.com.tw/wp-content/uploads/2024/07/PC1205-萌萌2-1024x1024.jpg"
+        ]
     },
     {
         "name": "萌萌派對12色可水洗彩色筆",
         "model": "APG1564",
         "image": "https://www.penrote.com.tw/wp-content/uploads/2024/07/APG-萌萌12可水洗-新品圖-01-1024x1024.jpg",
-        "category": "3,3-3,8,8-2"
+        "category": "3,3-3,8,8-2",
+        "feature": "全新角色！萌萌派對✨✨<br>小盒子三色包裝，攜帶便利！<br>圓筆頭好好畫 🖍<br>",
+        "price": "75元/盒",
+        "images": [
+            "https://www.penrote.com.tw/wp-content/uploads/2024/07/APG-萌萌12可水洗-新品圖-01-1024x1024.jpg",
+            "https://www.penrote.com.tw/wp-content/uploads/2024/07/IMG_7501-1024x1024.jpg",
+            "https://www.penrote.com.tw/wp-content/uploads/2024/07/IMG_7503-1024x1024.jpg",
+            "https://www.penrote.com.tw/wp-content/uploads/2024/07/APG1564-12可水洗彩色筆-1024x1024.jpg"
+        ]
     }
 
 ]
