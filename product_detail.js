@@ -1,3 +1,20 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const news = document.querySelector('.product_detail');
+
+    function handleScroll() {
+        const newsRect = news.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+
+        if (newsRect.top < viewportHeight && newsRect.bottom > 0) {
+            news.classList.add('visible');
+        }
+    }
+
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // 初次載入時檢查
+});
+
 // Back to top button functionality
 document.addEventListener('DOMContentLoaded', function () {
     const backToTopBtn = document.getElementById('backToTopBtn');
@@ -65,160 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-
-new Vue({
-    el: '#app',
-    data: {
-        product: null, // 用于存储当前显示的产品信息
-        activeThumbnailIndex: 0 // 活动缩略图索引
-    },
-    mounted() {
-        this.loadProduct();
-    },
-    methods: {
-        loadProduct() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const model = urlParams.get('model');
- 
- 
-            if (!model) {
-                console.error('Product model not specified.');
-                return;
-            }
- 
- 
-            // 这里假设 products.json 是包含所有产品的 JSON 文件
-            fetch('products.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // 过滤出与查询参数匹配的产品
-                    this.product = data.find(item => item.model === model);
- 
- 
-                    if (this.product) {
-                        this.$nextTick(() => {
-                            this.initializeImageGallery();
-                        });
-                    } else {
-                        console.error('Product not found.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error loading products JSON:', error);
-                });
-        },
-        initializeImageGallery() {
-            const imageScroll = document.querySelector('.image-scroll');
-            const thumbnailsContainer = document.querySelector('.thumbnails');
- 
- 
-            if (!this.product || !this.product.images || this.product.images.length === 0) {
-                console.error('No images available for the product.');
-                return;
-            }
- 
- 
-            // 清空现有的缩略图和图片
-            thumbnailsContainer.innerHTML = '';
-            imageScroll.innerHTML = '';
- 
- 
-            // 创建缩略图
-            this.product.images.forEach((image, index) => {
-                const thumbnail = document.createElement('img');
-                thumbnail.src = image;
-                thumbnail.alt = `Thumbnail ${index}`;
-                thumbnail.style.width = '120px'; // 缩略图宽度
-                thumbnail.dataset.index = index;
- 
- 
-                // 点击事件：滚动到所选图片
-                thumbnail.addEventListener('click', () => {
-                    this.scrollToImage(index);
-                    this.activeThumbnailIndex = index; // 更新活动缩略图索引
-                });
- 
- 
-                // 将缩略图添加到缩略图容器中
-                thumbnailsContainer.appendChild(thumbnail);
- 
- 
-                // 创建主图
-                const img = document.createElement('img');
-                img.src = image;
-                img.alt = `Product Image ${index}`;
-                imageScroll.appendChild(img);
-            });
- 
- 
-            // 更新活动缩略图
-            const updateActiveThumbnail = () => {
-                const scrollTop = imageScroll.scrollTop;
-                const imageHeight = imageScroll.scrollHeight / this.product.images.length;
-                const activeIndex = Math.round(scrollTop / imageHeight);
- 
- 
-                thumbnailsContainer.querySelectorAll('img').forEach((thumb, index) => {
-                    if (index === activeIndex) {
-                        thumb.classList.add('active');
-                        thumb.classList.remove('inactive');
-                    } else {
-                        thumb.classList.remove('active');
-                        thumb.classList.add('inactive');
-                    }
-                });
-               
-                console.log('Active Thumbnail Index:', activeIndex); // 调试输出活动缩略图索引
-            };
- 
- 
-            // 监听主图的滚动事件来同步缩图滚动
-            imageScroll.addEventListener('scroll', updateActiveThumbnail);
- 
- 
-            // 初始状态，设置默认活动缩图
-            updateActiveThumbnail();
-        },
-        scrollToImage(index) {
-            const imageScroll = document.querySelector('.image-scroll');
-            const images = imageScroll.querySelectorAll('img');
-            if (index < 0 || index >= images.length) return; // 确保索引有效
-       
-            const targetImage = images[index];
-            targetImage.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center' // 确保目标图片在视口中心
-            });
-        }
-        ,
-        smoothScrollTo(element, target, duration) {
-            const start = element.scrollTop;
-            const distance = target - start;
-            const startTime = performance.now();
-       
-            function scroll(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                element.scrollTop = start + distance * easeInOutQuad(progress);
-       
-                if (progress < 1) {
-                    requestAnimationFrame(scroll);
-                }
-            }
-       
-            function easeInOutQuad(t) {
-                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-            }
-       
-            requestAnimationFrame(scroll);
-        }
-    }
- });
  
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -321,20 +184,111 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Error loading data:', error));
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.accordion-button').forEach(button => {
-        button.addEventListener('click', () => {
-            const content = button.nextElementSibling;
-            const isActive = button.classList.contains('open');
 
-            // Toggle the clicked content's visibility
-            if (isActive) {
-                content.classList.remove('show');
-                button.classList.remove('open');
-            } else {
-                content.classList.add('show');
-                button.classList.add('open');
+new Vue({
+    el: '#app',
+    data: {
+        product: null, // 用于存储当前显示的产品信息
+        activeThumbnailIndex: 0, // 活动缩略图索引
+        activeIndexes: [0] // 默认打开的手风琴项索引
+    },
+    mounted() {
+        this.loadProduct();
+    },
+    methods: {
+        loadProduct() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const model = urlParams.get('model');
+
+            if (!model) {
+                console.error('Product model not specified.');
+                return;
             }
-        });
-    });
+
+            fetch('products.json')
+                .then(response => response.json())
+                .then(data => {
+                    this.product = data.find(item => item.model === model);
+                    if (this.product) {
+                        // 在数据加载后设置标题
+                        this.$nextTick(() => {
+                            this.initializeImageGallery();
+                            document.title = this.product.name; // 设置标题
+                        });
+                    } else {
+                        console.error('Product not found.');
+                    }
+                })
+                .catch(error => console.error('Error loading products JSON:', error));
+        },
+        initializeImageGallery() {
+            const imageScroll = document.querySelector('.image-scroll');
+            const thumbnailsContainer = document.querySelector('.thumbnails');
+
+            if (!this.product || !this.product.images || this.product.images.length === 0) {
+                console.error('No images available for the product.');
+                return;
+            }
+
+            thumbnailsContainer.innerHTML = '';
+            imageScroll.innerHTML = '';
+
+            this.product.images.forEach((image, index) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = image;
+                thumbnail.alt = `Thumbnail ${index}`;
+                thumbnail.style.width = '120px';
+                thumbnail.dataset.index = index;
+
+                thumbnail.addEventListener('click', () => {
+                    this.scrollToImage(index);
+                    this.activeThumbnailIndex = index;
+                });
+
+                thumbnailsContainer.appendChild(thumbnail);
+
+                const img = document.createElement('img');
+                img.src = image;
+                img.alt = `Product Image ${index}`;
+                imageScroll.appendChild(img);
+            });
+
+            const updateActiveThumbnail = () => {
+                const scrollTop = imageScroll.scrollTop;
+                const imageHeight = imageScroll.scrollHeight / this.product.images.length;
+                const activeIndex = Math.round(scrollTop / imageHeight);
+
+                thumbnailsContainer.querySelectorAll('img').forEach((thumb, index) => {
+                    if (index === activeIndex) {
+                        thumb.classList.add('active');
+                        thumb.classList.remove('inactive');
+                    } else {
+                        thumb.classList.remove('active');
+                        thumb.classList.add('inactive');
+                    }
+                });
+            };
+
+            imageScroll.addEventListener('scroll', updateActiveThumbnail);
+            updateActiveThumbnail();
+        },
+        scrollToImage(index) {
+            const imageScroll = document.querySelector('.image-scroll');
+            const images = imageScroll.querySelectorAll('img');
+            if (index < 0 || index >= images.length) return;
+
+            images[index].scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        },
+        toggle(index) {
+            // Toggle the index in the activeIndexes array
+            if (this.activeIndexes.includes(index)) {
+                this.activeIndexes = this.activeIndexes.filter(i => i !== index);
+            } else {
+                this.activeIndexes.push(index);
+            }
+        }
+    }
 });

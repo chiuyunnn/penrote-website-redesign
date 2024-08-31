@@ -57,265 +57,281 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-new Vue({
-    el: '#app',
-    data: {
-        products: [], // 商品数据
-        selectedCategory: '', // 选中的类别
-        categories: [], // 存储类别数据
-        searchQuery: '', // 搜索查询
-        filteredProducts: [] // 过滤后的商品数据
-    },
-    computed: {
-        filteredProducts() {
-            if (!this.products.length) return [];
-
-            // 过滤类别
-            let filteredByCategory = this.selectedCategory
-                ? this.products.filter(product =>
-                    product.category.split(',').includes(this.selectedCategory)
-                )
-                : this.products;
-
-            // 过滤搜索查询
-            return filteredByCategory.filter(product =>
-                product.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-                product.model.toLowerCase().includes(this.searchQuery.toLowerCase())
-            );
-        }
-    },
-    mounted() {
-        this.loadCategories();
-        this.loadProducts();
-        this.bindSearchEvents();
-        this.loadUrlParams(); // 处理 URL 查询参数
-    },
-    methods: {
-        loadCategories() {
-            fetch('categories.json')
-                .then(response => response.json())
-                .then(data => {
-                    this.categories = data.categories;
-                    this.generateMenu(data.categories);
-                    this.setActiveMenu();
-                    this.generateBreadcrumb();
-                })
-                .catch(error => console.error('Error loading categories JSON:', error));
+    new Vue({
+        el: '#app',
+        data: {
+            products: [], // 所有产品数据
+            selectedCategory: '', // 当前选中的类别
+            categories: [], // 所有类别数据
+            searchQuery: '', // 搜索查询字符串
+            currentPage: 1, // 当前页码
+            perPage: 9, // 每页显示的产品数量
+            filteredProducts: [] // 过滤后的产品数据
         },
-        loadProducts() {
-            fetch('products.json')
-                .then(response => response.json())
-                .then(data => {
-                    this.products = data;
-                    this.filterProducts();
-                })
-                .catch(error => console.error('Error loading products JSON:', error));
-        },
-        bindSearchEvents() {
-            const input = document.getElementById('input');
-            const searchButton = document.querySelector('.search-btn');
-
-            input.addEventListener('keypress', (event) => {
-                if (event.key === 'Enter') {
-                    this.performSearch();
+        computed: {
+            // 根据当前页码计算要显示的产品
+            paginatedProducts() {
+                const start = (this.currentPage - 1) * this.perPage;
+                const end = start + this.perPage;
+                return this.filteredProducts.slice(start, end);
+            },
+            // 计算总页数
+            totalPages() {
+                return Math.ceil(this.filteredProducts.length / this.perPage);
+            },
+            // 生成页码按钮
+            pageNumbers() {
+                let pages = [];
+                for (let i = 1; i <= this.totalPages; i++) {
+                    pages.push(i);
                 }
-            });
-
-            searchButton.addEventListener('click', () => {
-                this.performSearch();
-            });
+                return pages;
+            }
         },
-        performSearch() {
-            this.searchQuery = document.getElementById('input').value;
-            this.filterProducts(); // 过滤产品
-            this.generateBreadcrumb(); // 更新面包屑导航
+        mounted() {
+            this.loadCategories(); // 加载类别数据
+            this.loadProducts(); // 加载产品数据
+            this.bindSearchEvents(); // 绑定搜索框和按钮的事件
+            this.loadUrlParams(); // 加载 URL 查询参数
         },
-        filterProducts() {
-            this.$nextTick(() => {
-                let filteredByCategory = this.selectedCategory
-                    ? this.products.filter(product =>
-                        product.category.split(',').includes(this.selectedCategory)
-                    )
-                    : this.products;
-
-                this.filteredProducts = filteredByCategory.filter(product =>
-                    product.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-                    product.model.toLowerCase().includes(this.searchQuery.toLowerCase())
-                );
-
-                console.log('Filtered products:', this.filteredProducts); // 调试输出
-            });
-        },
-        generateMenu(categories) {
-            const menuContainer = document.getElementById('submenu');
-            menuContainer.innerHTML = ''; // 清空现有菜单
-            const menu = document.createElement('ul');
-            menu.classList.add('category');
-            const topLevelCategories = categories.filter(category => !category.parent);
-            topLevelCategories.forEach(category => {
-                const li = document.createElement('li');
-                li.classList.add('menu-item');
-                li.innerHTML = `${category.name} <i class="fa fa-chevron-down toggle-arrow"></i>`;
-                li.dataset.category = category.id;
-
-                const subcategoryUl = document.createElement('ul');
-                subcategoryUl.classList.add('subcategory');
-
-                const subcategories = categories.filter(cat => cat.parent === category.id);
-                subcategories.forEach(subcategory => {
-                    const subLi = document.createElement('li');
-                    subLi.textContent = subcategory.name;
-                    subLi.dataset.category = subcategory.id;
-                    subcategoryUl.appendChild(subLi);
+        methods: {
+            // 加载类别数据并生成菜单
+            loadCategories() {
+                fetch('categories.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.categories = data.categories;
+                        this.generateMenu(data.categories);
+                        this.setActiveMenu(); // 设置菜单的活跃状态
+                        this.generateBreadcrumb();
+                    })
+                    .catch(error => console.error('Error loading categories JSON:', error));
+            },
+    
+            // 加载产品数据并过滤产品
+            loadProducts() {
+                fetch('products.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.products = data;
+                        this.filterProducts(); // 初始过滤
+                    })
+                    .catch(error => console.error('Error loading products JSON:', error));
+            },
+    
+            // 绑定搜索框和搜索按钮的事件
+            bindSearchEvents() {
+                const input = document.getElementById('input');
+                const searchButton = document.querySelector('.search-btn');
+    
+                input.addEventListener('keypress', (event) => {
+                    if (event.key === 'Enter') {
+                        this.performSearch();
+                    }
                 });
-
-                li.appendChild(subcategoryUl);
-                menu.appendChild(li);
-            });
-
-            menuContainer.appendChild(menu);
-            this.bindMenuEvents();
-        },
-        bindMenuEvents() {
-            const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach(item => {
-                item.addEventListener('click', (event) => {
-                    event.stopPropagation();
-
-                    menuItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                            const otherSubcategory = otherItem.querySelector('.subcategory');
-                            if (otherSubcategory) {
-                                otherSubcategory.classList.remove('show');
-                                otherSubcategory.querySelectorAll('li').forEach(subItem => subItem.classList.remove('active'));
+    
+                searchButton.addEventListener('click', () => {
+                    this.performSearch();
+                });
+            },
+    
+            // 执行搜索操作
+            performSearch() {
+                this.searchQuery = document.getElementById('input').value;
+                this.filterProducts(); // 重新过滤
+                this.generateBreadcrumb();
+                this.currentPage = 1; // 在搜索后重置为第一页
+            },
+    
+            // 根据选中的类别和搜索查询过滤产品
+            filterProducts() {
+                this.$nextTick(() => {
+                    let filteredByCategory = this.selectedCategory
+                        ? this.products.filter(product =>
+                            product.category.split(',').includes(this.selectedCategory)
+                        )
+                        : this.products;
+    
+                    this.filteredProducts = filteredByCategory.filter(product =>
+                        product.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                        product.model.toLowerCase().includes(this.searchQuery.toLowerCase())
+                    );
+    
+                    this.currentPage = 1; // 重置为第一页
+                });
+            },
+    
+            // 生成侧边菜单
+            generateMenu(categories) {
+                const menuContainer = document.getElementById('submenu');
+                menuContainer.innerHTML = '';
+    
+                const menu = document.createElement('ul');
+                menu.classList.add('category');
+    
+                const topLevelCategories = categories.filter(category => !category.parent);
+                topLevelCategories.forEach(category => {
+                    const li = document.createElement('li');
+                    li.classList.add('menu-item');
+                    li.innerHTML = `${category.name} <i class="fa fa-chevron-down toggle-arrow"></i>`;
+                    li.dataset.category = category.id;
+    
+                    const subcategoryUl = document.createElement('ul');
+                    subcategoryUl.classList.add('subcategory');
+    
+                    const subcategories = categories.filter(cat => cat.parent === category.id);
+                    subcategories.forEach(subcategory => {
+                        const subLi = document.createElement('li');
+                        subLi.textContent = subcategory.name;
+                        subLi.dataset.category = subcategory.id;
+                        subcategoryUl.appendChild(subLi);
+                    });
+    
+                    li.appendChild(subcategoryUl);
+                    menu.appendChild(li);
+                });
+    
+                menuContainer.appendChild(menu);
+                this.bindMenuEvents(); // 绑定菜单项事件
+            },
+    
+            // 绑定菜单项的事件
+            bindMenuEvents() {
+                const menuItems = document.querySelectorAll('.menu-item');
+                menuItems.forEach(item => {
+                    item.addEventListener('click', (event) => {
+                        event.stopPropagation();
+    
+                        menuItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('active');
+                                const otherSubcategory = otherItem.querySelector('.subcategory');
+                                if (otherSubcategory) {
+                                    otherSubcategory.classList.remove('show');
+                                    otherSubcategory.querySelectorAll('li').forEach(subItem => subItem.classList.remove('active'));
+                                }
+                                const otherArrowIcon = otherItem.querySelector('.toggle-arrow');
+                                if (otherArrowIcon) {
+                                    otherArrowIcon.classList.remove('open');
+                                }
                             }
-                            const otherArrowIcon = otherItem.querySelector('.toggle-arrow');
-                            if (otherArrowIcon) {
-                                otherArrowIcon.classList.remove('open');
-                            }
+                        });
+    
+                        item.classList.toggle('active');
+                        const subcategory = item.querySelector('.subcategory');
+                        if (subcategory) {
+                            subcategory.classList.toggle('show');
+                            subcategory.querySelectorAll('li').forEach(subItem => {
+                                subItem.classList.toggle('active', subItem.dataset.category === this.selectedCategory);
+                            });
+                        }
+    
+                        const arrowIcon = item.querySelector('.toggle-arrow');
+                        if (arrowIcon) {
+                            arrowIcon.classList.toggle('open');
+                        }
+    
+                        this.selectedCategory = item.dataset.category;
+                        this.filterProducts();
+                        this.updateUrlAndBreadcrumb(item.dataset.category);
+                    });
+                });
+    
+                const subcategoryItems = document.querySelectorAll('.subcategory li');
+                subcategoryItems.forEach(item => {
+                    item.addEventListener('click', (event) => {
+                        event.stopPropagation();
+    
+                        subcategoryItems.forEach(otherItem => otherItem.classList.remove('active'));
+                        item.classList.add('active');
+    
+                        this.selectedCategory = item.dataset.category;
+                        this.filterProducts();
+                        this.updateUrlAndBreadcrumb(item.dataset.category);
+                    });
+                });
+            },
+    
+            // 根据选中的类别更新 URL 和面包屑
+            updateUrlAndBreadcrumb(categoryId) {
+                const url = new URL(window.location.href);
+                url.searchParams.set('category', categoryId);
+                window.history.pushState({}, '', url);
+                this.generateBreadcrumb();
+            },
+    
+            // 根据 URL 查询参数加载产品类别
+            loadUrlParams() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const categoryId = urlParams.get('category');
+                const searchQuery = urlParams.get('search'); // 获取搜索查询参数
+    
+                if (categoryId) {
+                    this.selectedCategory = categoryId;
+                }
+    
+                if (searchQuery) {
+                    this.searchQuery = searchQuery; // 设置搜索查询
+                }
+    
+                this.filterProducts(); // 过滤产品
+                this.setActiveMenu(); // 设置菜单的活跃状态
+            },
+    
+            // 生成面包屑
+            generateBreadcrumb() {
+                const breadcrumb = document.querySelector('.breadcrumb');
+                breadcrumb.innerHTML = '<li class="breadcrumb-item"><a href="index.html">首頁</a></li>';
+    
+                if (this.selectedCategory) {
+                    let category = this.categories.find(cat => cat.id === this.selectedCategory);
+                    const path = [];
+                    while (category) {
+                        path.unshift(category);
+                        category = this.categories.find(cat => cat.id === category.parent);
+                    }
+                    path.forEach((cat, index) => {
+                        if (index === path.length - 1) {
+                            breadcrumb.innerHTML += `<li class="breadcrumb-item active">${cat.name}</li>`;
+                        } else {
+                            breadcrumb.innerHTML += `<li class="breadcrumb-item"><a href="?category=${cat.id}">${cat.name}</a></li>`;
                         }
                     });
-
-                    item.classList.toggle('active');
-                    const subcategory = item.querySelector('.subcategory');
-                    const arrowIcon = item.querySelector('.toggle-arrow');
-                    if (subcategory) {
-                        subcategory.classList.toggle('show');
-                        if (item.classList.contains('active')) {
-                            subcategory.querySelectorAll('li').forEach(subItem => subItem.classList.remove('active'));
-                        }
-                    }
-                    if (arrowIcon) {
-                        arrowIcon.classList.toggle('open');
-                    }
-
-                    this.selectedCategory = item.dataset.category;
-                    this.filterProducts();
-                    this.updateUrlAndBreadcrumb(item.dataset.category);
-                });
-            });
-
-            document.querySelectorAll('.subcategory li').forEach(li => {
-                li.addEventListener('click', (event) => {
-                    event.stopPropagation();
-
-                    li.parentElement.querySelectorAll('li').forEach(item => item.classList.remove('active'));
-
-                    li.classList.add('active');
-
-                    this.selectedCategory = li.dataset.category;
-                    this.filterProducts();
-                    this.updateUrlAndBreadcrumb(li.dataset.category);
-                });
-            });
-
-            document.addEventListener('click', () => {
+                }
+            },
+    
+            // 分页跳转
+            goToPage(page) {
+                if (page < 1 || page > this.totalPages) return;
+                this.currentPage = page;
+                window.scrollTo(0, 0); // 分页时滚动到顶部
+            },
+    
+            // 设置菜单的活跃状态
+            setActiveMenu() {
                 const menuItems = document.querySelectorAll('.menu-item');
                 menuItems.forEach(item => {
-                    const subcategory = item.querySelector('.subcategory');
-                    if (subcategory) {
-                        subcategory.classList.remove('show');
-                    }
-                    item.classList.remove('active');
-                    const arrowIcon = item.querySelector('.toggle-arrow');
-                    if (arrowIcon) {
-                        arrowIcon.classList.remove('open');
-                    }
-                });
-            });
-        },
-        setActiveMenu() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const categoryId = urlParams.get('category');
-
-            if (categoryId) {
-                const menuItems = document.querySelectorAll('.menu-item');
-
-                menuItems.forEach(item => {
-                    if (item.dataset.category === categoryId) {
+                    const subcategoryItems = item.querySelectorAll('.subcategory li');
+                    if (this.selectedCategory && (
+                        item.dataset.category === this.selectedCategory || 
+                        Array.from(subcategoryItems).some(subItem => subItem.dataset.category === this.selectedCategory)
+                    )) {
                         item.classList.add('active');
+                        item.querySelector('.toggle-arrow').classList.add('open');
                         const subcategory = item.querySelector('.subcategory');
                         if (subcategory) {
                             subcategory.classList.add('show');
                         }
-                    }
-                });
-                this.selectedCategory = categoryId;
-            }
-        },
-        generateBreadcrumb() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const categoryId = urlParams.get('category');
-            const searchQuery = urlParams.get('search');
-
-            const breadcrumbContainer = document.querySelector('.breadcrumb');
-            breadcrumbContainer.innerHTML = `<li class="breadcrumb-item"><a href="index.html">首頁</a></li>`;
-
-            if (searchQuery) {
-                breadcrumbContainer.innerHTML += `<li class="breadcrumb-item active" aria-current="page">搜尋結果: ${searchQuery}</li>`;
-            } else if (categoryId) {
-                const selectedCategory = this.categories.find(cat => cat.id === categoryId);
-                if (selectedCategory) {
-                    if (selectedCategory.parent) {
-                        const parentCategory = this.categories.find(cat => cat.id === selectedCategory.parent);
-                        if (parentCategory) {
-                            breadcrumbContainer.innerHTML += `<li class="breadcrumb-item"><a href="product.html?category=${parentCategory.id}">${parentCategory.name}</a></li>`;
+                    } else {
+                        item.classList.remove('active');
+                        item.querySelector('.toggle-arrow').classList.remove('open');
+                        const subcategory = item.querySelector('.subcategory');
+                        if (subcategory) {
+                            subcategory.classList.remove('show');
                         }
                     }
-                    breadcrumbContainer.innerHTML += `<li class="breadcrumb-item active" aria-current="page">${selectedCategory.name}</li>`;
-                }
+                });
             }
-        },
-        updateUrlAndBreadcrumb(categoryId) {
-            const url = new URL(window.location.href);
-            url.searchParams.set('category', categoryId);
-            url.searchParams.delete('search'); // 清除搜索参数
-            window.history.pushState({}, '', url);
-
-            this.generateBreadcrumb();
-        },
-        loadUrlParams() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const query = urlParams.get('search');
-            const categoryId = urlParams.get('category');
-
-            // 设置搜索查询
-            if (query) {
-                this.searchQuery = query;
-            }
-
-            // 设置选中的类别
-            if (categoryId) {
-                this.selectedCategory = categoryId;
-            }
-
-            // 过滤产品
-            this.filterProducts();
-
-            // 生成面包屑导航
-            this.generateBreadcrumb();
         }
-    }
-});
+    });
+    

@@ -44,13 +44,16 @@
                 </button>
             </div>
         </div>
+        <div class="product_detail">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">首頁</a></li>
             <!-- 父类面包屑 -->
             <!-- 子类面包屑 -->
         </ol>
+        
         <div id="app">
-            <div class="container">
+            <!-- Product Information -->
+            <div class="product-container">
                 <div class="thumbnails"></div>
                 <div class="image-scroll"></div>
                 <div class="products" v-if="product">
@@ -59,28 +62,34 @@
                     <h4 class="feature">商品特色</h4>
                     <p v-html="product.feature"></p>
                     <h5 class="price">建議售價｜{{ product.price }}</h5>
-                 </div>
-             </div>
+                </div>
+            </div>
+            
+            <!-- Accordion -->
+            <div class="accordion-container" v-if="product">
+                <button class="accordion-button" :class="{ open: activeIndexes.includes(0) }" @click="toggle(0)">
+                    商品詳情<i class="fa fa-chevron-down toggle-arrow"></i>
+                </button>
+                <div class="accordion-content" :class="{ show: activeIndexes.includes(0) }">
+                    <p v-html="product.detail"></p>
+                </div>
+        
+                <button class="accordion-button" :class="{ open: activeIndexes.includes(1) }" @click="toggle(1)">
+                    條碼<i class="fa fa-chevron-down toggle-arrow"></i>
+                </button>
+                <div class="accordion-content" :class="{ show: activeIndexes.includes(1) }">
+                    <p v-html="product.barcode"></p>
+                </div>
+        
+                <button class="accordion-button" :class="{ open: activeIndexes.includes(2) }" @click="toggle(2)">
+                    包裝方式<i class="fa fa-chevron-down toggle-arrow"></i>
+                </button>
+                <div class="accordion-content" :class="{ show: activeIndexes.includes(2) }">
+                    <p v-html="product.package"></p>
+                </div>
+            </div>
         </div>
-        <div class="accordion">
-            <button class="accordion-button">商品詳情<i class="fa fa-chevron-down toggle-arrow"></i></button>
-            <div class="accordion-content">
-              <p>材質：染料、乙二醇、活性劑、水、PP（聚丙烯）、PE（聚乙烯）<br>
-                顏色：粉、橘、藍<br>
-                規格：12色
-                </p>
-            </div>
-            
-            <button class="accordion-button">條碼<i class="fa fa-chevron-down toggle-arrow"></i></button>
-            <div class="accordion-content">
-              <p>藍色：4711498951564<br>橘色：4711498951571<br>粉色：4711498951588</p>
-            </div>
-            
-            <button class="accordion-button">包裝方式<i class="fa fa-chevron-down toggle-arrow"></i></button>
-            <div class="accordion-content">
-              <p>12SET / 6BOX</p>
-            </div>
-          </div>
+    </div>
         
         <footer id="footer">
             <p>&copy; 2024 Penrote All rights reserved 丞儀企業有限公司</p>

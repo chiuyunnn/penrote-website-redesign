@@ -47,9 +47,10 @@
             </div>
             
         </div>
+
         <div class="all_products">
             <div class="headline">
-                <h2><i class="fa-solid fa-pen-fancy"></i>商品介紹</h2>
+                <h2><a href="product.html"><i class="fa-solid fa-pen-fancy"></i> 商品介紹</a></h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">首頁</a></li>
                     <!-- 父菜單 -->
@@ -58,18 +59,31 @@
             </div>
             <div id="app">
                 <div id="submenu"></div>
-                    <div class="products" v-for="item in filteredProducts" :key="item.model">
+                <div class="products-container">
+                    <div 
+                        class="products" 
+                        v-for="item in paginatedProducts" 
+                        :key="item.model"
+                        ref="product" 
+                    >
                         <a :href="'product_detail.html?model=' + item.model" target="_blank">
                             <img :src="item.image" class="productimg" alt="Product Image">
                             <h3>{{ item.name }}</h3>
                             <h6>型號｜{{ item.model }}</h6>
                         </a>
                     </div>
+                </div>
+                <div class="pagination">
+                    <button 
+                        v-for="page in pageNumbers" 
+                        :key="page" 
+                        @click="goToPage(page)" 
+                        :class="{ active: page === currentPage }">
+                        {{ page }}
+                    </button>
+                </div>
             </div>
         </div>
-        
-        
-
         <footer id="footer">
             <p>&copy; 2024 Penrote All rights reserved 丞儀企業有限公司</p>
         </footer>

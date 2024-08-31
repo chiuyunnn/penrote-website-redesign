@@ -178,6 +178,7 @@ i {
     opacity: 0.8;
 }
 
+
 .all_products {
     opacity: 0;
     transform: translateY(20px);
@@ -188,6 +189,7 @@ i {
     opacity: 1;
     transform: translateY(0);
 }
+
 
 .headline {
     margin-top: 120px;
@@ -205,10 +207,16 @@ i {
     display: inline-block;
 }
 
+.headline h2 a {
+    text-decoration: none;
+    color: var(--bs-red);
+}
+
+
 .breadcrumb {
     display: inline-block;
-    width:400px;
-    margin-left: 130px;
+    width: 400px;
+    margin-left: 150px;
 }
 
 .breadcrumb-item {
@@ -266,6 +274,7 @@ i {
     color: var(--bs-red);
 }
 
+
 .subcategory {
     display: none;
     list-style: none;
@@ -310,21 +319,41 @@ i {
     color: var(--bs-red);
 }
 
-
-#app{
+#app {
     display: inline-block;
     position: relative;
-    left:100px;
+    left: 120px;
+}
+
+
+.products-container {
+    display: inline-block;
+    vertical-align: top;
+    width: 950px;
+    margin-bottom: 50px;
+    overflow: hidden;
 }
 
 .products {
     display: inline-block;
     border: solid 1px #ddd;
     border-radius: 10px;
-    vertical-align: top;
-    margin-right: 60px;
-    margin-top: 20px;
+    margin: 20px 60px 25px 0px;
+    animation: fadeIn 1s ease-out;
     transition: transform 0.3s ease;
+    max-width: 250px;
+    vertical-align: top; 
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .products:hover {
@@ -347,16 +376,48 @@ h6 {
 .products h3 {
     margin: 5px 0px;
     font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .products h6 {
-    margin: 10px 0px 15px 0px ;
+    margin: 10px 0px 15px 0px;
     font-size: 12px;
 }
 
 .products a {
     text-decoration: none;
 }
+
+
+.pagination {
+    display: flex;
+    justify-content: center; 
+    margin-bottom: 50px;
+}
+
+
+.pagination button {
+    padding: 5px 10px;
+    margin: 5px; 
+    border: 1px solid var(--bs-gray);
+    color: var(--bs-gray);
+    opacity: 0.5;
+    border-radius: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pagination .active {
+    font-weight: 400;
+    background-color:transparent;
+    border-color: var(--bs-red);
+    color:var(--bs-red);
+    opacity: 1;
+}
+
 
 
 #footer {
