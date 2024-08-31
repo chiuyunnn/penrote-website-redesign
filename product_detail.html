@@ -53,15 +53,34 @@
             <div class="container">
                 <div class="thumbnails"></div>
                 <div class="image-scroll"></div>
-            </div>
-            <div class="products" v-if="product">
-                <h2 class="name">{{ product.name }}</h2>
-                <h4 class="model">型號｜{{ product.model }}</h4>
-                <h4 class="feature">商品特色</h4>
-                <p v-html="product.feature"></p>
-                <h5 class="price">建議售價｜{{ product.price }}</h5>
-            </div>
+                <div class="products" v-if="product">
+                    <h2 class="name">{{ product.name }}</h2>
+                    <h4 class="model">型號｜{{ product.model }}</h4>
+                    <h4 class="feature">商品特色</h4>
+                    <p v-html="product.feature"></p>
+                    <h5 class="price">建議售價｜{{ product.price }}</h5>
+                 </div>
+             </div>
         </div>
+        <div class="accordion">
+            <button class="accordion-button">商品詳情<i class="fa fa-chevron-down toggle-arrow"></i></button>
+            <div class="accordion-content">
+              <p>材質：染料、乙二醇、活性劑、水、PP（聚丙烯）、PE（聚乙烯）<br>
+                顏色：粉、橘、藍<br>
+                規格：12色
+                </p>
+            </div>
+            
+            <button class="accordion-button">條碼<i class="fa fa-chevron-down toggle-arrow"></i></button>
+            <div class="accordion-content">
+              <p>藍色：4711498951564<br>橘色：4711498951571<br>粉色：4711498951588</p>
+            </div>
+            
+            <button class="accordion-button">包裝方式<i class="fa fa-chevron-down toggle-arrow"></i></button>
+            <div class="accordion-content">
+              <p>12SET / 6BOX</p>
+            </div>
+          </div>
         
         <footer id="footer">
             <p>&copy; 2024 Penrote All rights reserved 丞儀企業有限公司</p>

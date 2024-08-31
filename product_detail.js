@@ -133,7 +133,7 @@ new Vue({
                 const thumbnail = document.createElement('img');
                 thumbnail.src = image;
                 thumbnail.alt = `Thumbnail ${index}`;
-                thumbnail.style.width = '80px'; // 缩略图宽度
+                thumbnail.style.width = '120px'; // 缩略图宽度
                 thumbnail.dataset.index = index;
  
  
@@ -319,4 +319,22 @@ document.addEventListener('DOMContentLoaded', () => {
             generateBreadcrumb(categories, product);
         })
         .catch(error => console.error('Error loading data:', error));
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.accordion-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            const isActive = button.classList.contains('open');
+
+            // Toggle the clicked content's visibility
+            if (isActive) {
+                content.classList.remove('show');
+                button.classList.remove('open');
+            } else {
+                content.classList.add('show');
+                button.classList.add('open');
+            }
+        });
+    });
 });
