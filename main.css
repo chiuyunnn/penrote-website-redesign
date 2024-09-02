@@ -1,7 +1,8 @@
 * {
-    /*   border: solid 1px black*/
+    box-sizing: border-box; 
     font-family: "Noto Sans TC", sans-serif;
     letter-spacing: 2px;
+    /* border: solid 1px black;  */
 }
 
 :root {
@@ -12,8 +13,8 @@
 html,
 body {
     width: 100%;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -23,15 +24,18 @@ body {
     z-index: 1000;
     background-color: white;
     width: 100%;
-    height: 50px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition-duration: 0.5s;
+    justify-content: space-between; /* 確保子元素之間有足夠的間距 */
 }
 
 #header.scrolled {
-    position: fixed;
-    top: 0px;
+    top: 0;
     height: 55px;
-    vertical-align: middle;
     background-color: var(--bs-red);
 }
 
@@ -40,31 +44,58 @@ body {
     opacity: 0.9;
 }
 
-.penrote-logo {
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 40px;
+#header.scrolled #menu-search i{
+    color:var(--bs-gray);
 }
 
-#nav {
-    display: inline-block;
-    clear: both;
-    margin: 0px;
-}
-
-#nav.scrolled a {
+#header.scrolled .inline-block-nav a {
     color: white;
 }
 
+#header.scrolled #search input#input {
+    color: white;
+}
+
+#header.scrolled .inline-block-nav li a::after {
+    border-bottom: 3px solid white;
+    opacity: 0.7;
+}
+
+#header.scrolled #search input::placeholder {
+    color: white;
+    opacity: 0.7;
+}
+
+#header.scrolled .menu-icon .bar {
+    background-color: white; 
+}
+
+#header.scrolled #menu{
+    top: 55px;
+}
+
+
+.penrote-logo {
+    flex: 0 0 200px;
+    margin:0px 10px;
+}
+
+
+#nav {
+    flex: 1 0 auto; /* 擴展並允許收縮，佔用更多空間 */
+}
+
 #nav ul {
-    margin: 0px;
+    margin: 0;
     list-style: none;
-    padding: 5px 0px 5px 20px;
+    padding: 0;
+    display: flex;
+    justify-content: center;   
+    align-items: center;
 }
 
 #nav li {
-    display: inline-block;
-    margin: 0px 10px;
+    margin: 0 10px;
 }
 
 #nav a {
@@ -72,7 +103,7 @@ body {
     text-decoration: none;
     font-size: 16px;
     font-weight: 450;
-    padding: 0px 15px;
+    padding: 0 15px;
 }
 
 #nav li a {
@@ -90,40 +121,163 @@ body {
     transition: 0.3s;
 }
 
-#nav.scrolled li a::after {
-    border-bottom: 3px solid white;
-    opacity: 0.7;
+#nav li a:hover::after {
+    right: 0;
+    left: 0;
 }
 
-#nav li a:hover::after {
-    right: 0%;
-    left: 0%;
+#menu {
+    display: none; 
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    top: 69px;
+    right: 0;
+    text-align: center;
+    background-color:white;
+    flex-direction: column;
+    border-radius: 0px 0px 10px 10px;
+    z-index: 500;
+}
+
+.menu-list{
+    margin: 0px;
+    padding: 0px;
+}
+
+#menu ul{
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+#menu li{
+    padding: 15px 0px;
+    display: block;
+}
+
+#menu a{
+    color: var(--bs-gray);
+    text-decoration: none;
+}
+
+#menu.active {
+    display: flex; 
+    opacity: 0.9;
+    transform: translateY(0);
+}
+
+.menu-icon {
+    display: none;
+    position: absolute;
+    right:30px;
+    cursor: pointer;
+}
+
+.menu-icon .bar {
+    display: block;
+    background-color: var(--bs-red);
+    border-radius: 5px;
+    height: 3px;
+    width: 25px;
+    margin: 5px 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-icon.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.menu-icon.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-icon.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+#menu-search {
+    display: none;
+    position: relative; 
+}
+
+#menu.active #menu-search {
+    display: block;
+}
+
+#menu-search input {
+    height: 35px;
+    font-size: 11pt;
+    color: var(--bs-gray);
+    border: solid 1px;
+    outline: none;
+    background-color: transparent;
+    padding-left: 15px;
+    margin-bottom: 30px;
+    width: 80%;
+}
+
+#menu-search .search-btn{
+    position: absolute; 
+    right: 12%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#menu-search i{
+    color: var(--bs-gray);
+    font-size: 14px;
+}
+
+/* Webkit 浏览器中隐藏清除按钮 */
+#menu-input::-webkit-search-clear-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Firefox 中隐藏清除按钮 */
+#menu-input::-moz-clear {
+    display: none;
+}
+
+/* Edge 浏览器 */
+#menu-input::-ms-clear {
+    display: none;
+}
+
+/* Safari 特定处理 */
+#menu-input::-webkit-search-cancel-button {
+    display: none;
 }
 
 
 #link {
-    display: inline-block;
-    clear: both;
+    flex: 1 1 auto; /* 不會擴展，允許收縮 */
+    display: flex;
+    align-items: center;
 }
 
 #link ul {
-    margin: 0px;
+    margin: 0;
+    padding: 0;
     list-style: none;
-    padding: 0px 10px;
+    display: flex;
+    align-items: center;
 }
 
 #link li {
-    display: inline-block;
-    margin: 0px 15px;
+    margin: 0 20px;
     font-size: 30px;
 }
 
 i {
     color: var(--bs-red);
     vertical-align: sub;
-    position: relative;
     transition: transform 0.3s ease;
     opacity: 1;
+    position: relative;
+    vertical-align: baseline;
 }
 
 #link i:hover {
@@ -131,67 +285,51 @@ i {
     opacity: 0.8;
 }
 
+
 #search {
-    width: 300px;
-    vertical-align: middle;
-    white-space: nowrap;
-    position: relative;
-    display: inline-block;
+    flex: 1 1 auto; /* 不會擴展，允許收縮 */
+    display: flex;
+    align-items: center;
+    width: 100%;
     margin-left: 15px;
 }
 
 #search input#input {
-    width: 300px;
     height: 35px;
     font-size: 11pt;
-    float: left;
     color: var(--bs-gray);
     border: solid 1px;
-    padding-left: 15px;
     outline: none;
     background-color: transparent;
-
+    padding-left: 15px;
 }
 
-#search.scrolled input#input {
-    color: white;
-}
-
-#search.scrolled input::placeholder {
-    color: white;
-    opacity: 0.7;
-}
-
-.search-btn {
-    margin-left: 12px;
+.search-btn { 
     font-size: 20px;
+    margin-left: 10px;
     color: var(--bs-red);
-    position: absolute;
-    top:-5px;
     cursor: pointer;
     border: none;
     background-color: transparent;
     opacity: 1;
 }
 
-.search-btn :hover {
+.search-btn:hover {
     opacity: 0.8;
 }
 
 
-/* 確保幻燈片容器相對定位 */
+/* 幻燈片設定 */
 .carousel {
     position: relative;
     width: 100%;
-    margin-top: 105px;
+    margin-top: 140px;
     overflow: hidden;
 }
 
-/* 使用 flexbox 定位幻燈片 */
 .carousel-images {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    /* 這裡是切換效果 */
 }
 
 .carousel-images img {
@@ -227,16 +365,13 @@ i {
     right: 0;
 }
 
-/* 為幻燈片設置基本樣式 */
+/* 幻燈片樣式 */
 .slide {
     flex: 0 0 100%;
-    /* 確保每個幻燈片佔滿容器寬度 */
     opacity: 0;
     transition: opacity 1s ease-in-out;
-    /* 淡入淡出效果 */
 }
 
-/* 顯示當前幻燈片 */
 .slide.active {
     opacity: 1;
 }
@@ -252,7 +387,7 @@ i {
 .dot {
     height: 10px;
     width: 10px;
-    margin: 0px 5px;
+    margin: 0 5px;
     background-color: var(--bs-gray);
     opacity: 0.7;
     border-radius: 50%;
@@ -266,7 +401,7 @@ i {
     opacity: 0.7;
 }
 
-/* CSS動畫 */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -289,13 +424,11 @@ i {
     transform: translateY(0);
 }
 
-
 .products h1 {
     text-align: center;
     color: var(--bs-red);
     margin-top: 40px;
     font-weight: 500;
-    cursor: default;
 }
 
 .list {
@@ -327,10 +460,8 @@ i {
     font-weight: 450;
     color: var(--bs-gray);
     display: block;
-    padding: 10px 0px;
+    padding: 10px 0;
 }
-
-
 
 #footer {
     background-color: #f8f9fa;
@@ -353,14 +484,182 @@ i {
     opacity: 0;
     cursor: pointer;
     font-size: 45px;
-    transition: 0.3s;
 }
 
 .back-to-top:hover {
     transform: translateY(-20px);
-    transition: 0.3s;
 }
 
 .back-to-top.show {
     opacity: 1;
+}
+
+@media (max-width: 1200px) {
+    /* For large screens */
+    
+    #header{
+        top: 10px;
+    }
+
+    #nav, #search {
+        display: none;
+    }
+    #link {
+        display: flex; 
+        position: absolute;
+        right:80px;
+    }
+
+    #link li{
+        font-size: 28px;
+    }
+
+    #menu {
+        width: 30%;
+    }
+    .menu-icon {
+        display: block; 
+    }
+
+    .products {
+            opacity: 1; 
+    }
+        
+    .category {
+            margin: 20px 30px;
+    }
+
+}
+
+@media (max-width: 992px) {
+    /* For medium screens (tablets) */
+    
+    #header{
+        top: 10px;
+    }
+
+    #nav,
+    #search {
+        display: none;
+    }
+
+    #link li{
+        margin: 0px 15px;
+        font-size: 25px;
+    }
+
+    #menu {
+        width: 35%;
+    }
+
+    .carousel { 
+        margin-top: 130px;
+    }
+
+    .products {
+        opacity: 1; 
+    }
+    
+    .category {
+        margin: 20px 30px;
+    }
+    
+    .products h1 {
+        font-size: 22px;
+        margin-bottom: 30px;
+    }
+
+    .category h4{
+        font-size: 15px;
+        padding: 5px 0px;
+    }
+
+    .back-to-top {
+        font-size: 40px; 
+    }
+}
+
+@media (max-width: 768px) {
+    /* For small screens (phones) */
+
+    #header{
+        top: 10px;
+    }
+    .penrote-logo{
+        margin:0px 15px;
+    }
+
+    #nav,
+    #search {
+        display: none;
+    }
+
+    #link li{
+        margin: 0px 12px;
+        font-size: 23px;
+    }
+
+    #menu{
+        width: 40%;
+    }
+
+    #menu li{
+        font-size: 15px;
+    }
+
+    .carousel { 
+        margin-top: 120px;
+    }
+
+    .products {
+        opacity: 1; 
+    }
+    
+    .products h1 {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+    .category {
+        margin: 20px 30px;
+    }
+
+    .category h4{
+        font-size: 14px;
+        padding: 5px 0px;
+    }
+
+    .back-to-top {
+        font-size: 35px; 
+    }
+}
+
+@media (max-width: 480px) {
+    /* For extra small screens (phones in portrait) */
+    
+    #nav,
+    #search {
+        display: none;
+    }
+
+    #link li{
+        margin: 0px 10px;
+        font-size: 20px;
+    }
+
+    #menu{
+        width: 40%;
+    }
+
+    .products h1 {
+        font-size: 20px;
+    }
+
+    .category h4{
+        font-size: 14px;
+        padding: 5px 0px;
+    }
+
+    .back-to-top {
+        font-size: 30px; 
+    }
 }

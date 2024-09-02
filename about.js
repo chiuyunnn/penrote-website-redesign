@@ -38,46 +38,54 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.getElementById('header');
-    const fontcolor = document.getElementById('nav');
-    const search = document.getElementById('search');
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
     const logoimg = document.getElementById('logoimg');
 
-
+    // Scroll event for header color change
     window.addEventListener('scroll', function () {
         if (window.scrollY > 30) {
             navbar.classList.add('scrolled');
-            fontcolor.classList.add('scrolled');
-            search.classList.add('scrolled');
             logoimg.src = 'img/penrote-logo-white.png';
         } else {
             navbar.classList.remove('scrolled');
-            fontcolor.classList.remove('scrolled');
-            search.classList.remove('scrolled');
             logoimg.src = 'img/penrote-logo-red.png';
         }
+    });
+
+    // Click event for menu toggle
+    menuToggle.addEventListener('click', function () {
+        console.log('Menu toggle clicked'); // Debugging
+        menu.classList.toggle('active'); // Toggle menu visibility
+        menuToggle.classList.toggle('active'); // Toggle menu icon animation
     });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('input');
-    const searchButton = document.querySelector('.search-btn');
+    const searchInputs = document.querySelectorAll('#input, #menu-input'); // 所有搜索输入框
+    const searchButtons = document.querySelectorAll('.search-btn'); // 所有搜索按钮
 
-    // 監聽輸入框的 Enter 鍵事件
-    searchInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            performSearch();
-        }
+    // 监听输入框的 Enter 键事件
+    searchInputs.forEach(input => {
+        input.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                performSearch(input);
+            }
+        });
     });
 
-    // 監聽搜尋按鈕的點擊事件
-    searchButton.addEventListener('click', () => {
-        performSearch();
+    // 监听所有搜索按钮的点击事件
+    searchButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const input = button.previousElementSibling; // 获取与按钮关联的输入框
+            performSearch(input);
+        });
     });
 
-    function performSearch() {
-        const query = searchInput.value.trim();
+    function performSearch(input) {
+        const query = input.value.trim();
         if (query) {
-            // 導向商品頁並傳遞搜尋查詢參數
+            // 导向商品页面并传递搜索查询参数
             window.location.href = `product.html?search=${encodeURIComponent(query)}`;
         }
     }
