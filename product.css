@@ -1,7 +1,8 @@
 * {
-    /* border: solid 1px black; */
+    box-sizing: border-box; 
     font-family: "Noto Sans TC", sans-serif;
     letter-spacing: 2px;
+    /* border: solid 1px black; */
 }
 
 :root {
@@ -12,8 +13,8 @@
 html,
 body {
     width: 100%;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -23,15 +24,18 @@ body {
     z-index: 1000;
     background-color: white;
     width: 100%;
-    height: 50px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition-duration: 0.5s;
+    justify-content: space-between; /* 確保子元素之間有足夠的間距 */
 }
 
 #header.scrolled {
-    position: fixed;
-    top: 0px;
+    top: 0;
     height: 55px;
-    vertical-align: middle;
     background-color: var(--bs-red);
 }
 
@@ -40,31 +44,58 @@ body {
     opacity: 0.9;
 }
 
-.penrote-logo {
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 40px;
+#header.scrolled #menu-search i{
+    color:var(--bs-gray);
 }
 
-#nav {
-    display: inline-block;
-    clear: both;
-    margin: 0px;
-}
-
-#nav.scrolled a {
+#header.scrolled .inline-block-nav a {
     color: white;
 }
 
+#header.scrolled #search input#input {
+    color: white;
+}
+
+#header.scrolled .inline-block-nav li a::after {
+    border-bottom: 3px solid white;
+    opacity: 0.7;
+}
+
+#header.scrolled #search input::placeholder {
+    color: white;
+    opacity: 0.7;
+}
+
+#header.scrolled .menu-icon .bar {
+    background-color: white; 
+}
+
+#header.scrolled #menu{
+    top: 55px;
+}
+
+
+.penrote-logo {
+    flex: 0 0 200px;
+    margin:0px 10px;
+}
+
+
+#nav {
+    flex: 1 0 auto; /* 擴展並允許收縮，佔用更多空間 */
+}
+
 #nav ul {
-    margin: 0px;
+    margin: 0;
     list-style: none;
-    padding: 5px 0px 5px 20px;
+    padding: 0;
+    display: flex;
+    justify-content: center;   
+    align-items: center;
 }
 
 #nav li {
-    display: inline-block;
-    margin: 0px 10px;
+    margin: 0 10px;
 }
 
 #nav a {
@@ -72,7 +103,7 @@ body {
     text-decoration: none;
     font-size: 16px;
     font-weight: 450;
-    padding: 0px 15px;
+    padding: 0 15px;
 }
 
 #nav li a {
@@ -90,40 +121,163 @@ body {
     transition: 0.3s;
 }
 
-#nav.scrolled li a::after {
-    border-bottom: 3px solid white;
-    opacity: 0.7;
+#nav li a:hover::after {
+    right: 0;
+    left: 0;
 }
 
-#nav li a:hover::after {
-    right: 0%;
-    left: 0%;
+#menu {
+    display: none; 
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    top: 69px;
+    right: 0;
+    text-align: center;
+    background-color:white;
+    flex-direction: column;
+    border-radius: 0px 0px 10px 10px;
+    z-index: 500;
+}
+
+.menu-list{
+    margin: 0px;
+    padding: 0px;
+}
+
+#menu ul{
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+#menu li{
+    padding: 15px 0px;
+    display: block;
+}
+
+#menu a{
+    color: var(--bs-gray);
+    text-decoration: none;
+}
+
+#menu.active {
+    display: flex; 
+    opacity: 0.9;
+    transform: translateY(0);
+}
+
+.menu-icon {
+    display: none;
+    position: absolute;
+    right:30px;
+    cursor: pointer;
+}
+
+.menu-icon .bar {
+    display: block;
+    background-color: var(--bs-red);
+    border-radius: 5px;
+    height: 3px;
+    width: 25px;
+    margin: 5px 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-icon.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.menu-icon.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-icon.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+#menu-search {
+    display: none;
+    position: relative; 
+}
+
+#menu.active #menu-search {
+    display: block;
+}
+
+#menu-search input {
+    height: 35px;
+    font-size: 11pt;
+    color: var(--bs-gray);
+    border: solid 1px;
+    outline: none;
+    background-color: transparent;
+    padding-left: 15px;
+    margin-bottom: 30px;
+    width: 80%;
+}
+
+#menu-search .search-btn{
+    position: absolute; 
+    right: 12%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#menu-search i{
+    color: var(--bs-gray);
+    font-size: 14px;
+}
+
+/* Webkit 浏览器中隐藏清除按钮 */
+#menu-input::-webkit-search-clear-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Firefox 中隐藏清除按钮 */
+#menu-input::-moz-clear {
+    display: none;
+}
+
+/* Edge 浏览器 */
+#menu-input::-ms-clear {
+    display: none;
+}
+
+/* Safari 特定处理 */
+#menu-input::-webkit-search-cancel-button {
+    display: none;
 }
 
 
 #link {
-    display: inline-block;
-    clear: both;
+    flex: 1 1 auto; /* 不會擴展，允許收縮 */
+    display: flex;
+    align-items: center;
 }
 
 #link ul {
-    margin: 0px;
+    margin: 0;
+    padding: 0;
     list-style: none;
-    padding: 0px 10px;
+    display: flex;
+    align-items: center;
 }
 
 #link li {
-    display: inline-block;
-    margin: 0px 15px;
+    margin: 0 20px;
     font-size: 30px;
 }
 
 i {
     color: var(--bs-red);
     vertical-align: sub;
-    position: relative;
     transition: transform 0.3s ease;
     opacity: 1;
+    position: relative;
+    vertical-align: baseline;
 }
 
 #link i:hover {
@@ -131,53 +285,38 @@ i {
     opacity: 0.8;
 }
 
+
 #search {
-    width: 300px;
-    vertical-align: middle;
-    white-space: nowrap;
-    position: relative;
-    display: inline-block;
+    flex: 1 1 auto; /* 不會擴展，允許收縮 */
+    display: flex;
+    align-items: center;
+    width: 100%;
     margin-left: 15px;
 }
 
 #search input#input {
-    width: 300px;
     height: 35px;
     font-size: 11pt;
-    float: left;
     color: var(--bs-gray);
     border: solid 1px;
-    padding-left: 15px;
     outline: none;
     background-color: transparent;
-
+    padding-left: 15px;
 }
 
-#search.scrolled input#input {
-    color: white;
-}
-
-#search.scrolled input::placeholder {
-    color: white;
-    opacity: 0.7;
-}
-
-.search-btn {
-    margin-left: 12px;
+.search-btn { 
     font-size: 20px;
+    margin-left: 10px;
     color: var(--bs-red);
-    position: absolute;
-    top:-5px;
     cursor: pointer;
     border: none;
     background-color: transparent;
     opacity: 1;
 }
 
-.search-btn :hover {
+.search-btn:hover {
     opacity: 0.8;
 }
-
 
 .all_products {
     opacity: 0;
@@ -190,15 +329,11 @@ i {
     transform: translateY(0);
 }
 
-
 .headline {
     margin-top: 120px;
-    padding-left: 100px;
-}
-
-.headline i {
-    vertical-align: baseline;
-    margin-right: 10px;
+    padding-left: 80px;
+    display: flex;
+    align-items: center;
 }
 
 .headline h2 {
@@ -212,11 +347,17 @@ i {
     color: var(--bs-red);
 }
 
+.headline i {
+    vertical-align: baseline;
+    margin-right: 5px;
+}
+
 
 .breadcrumb {
     display: inline-block;
-    width: 400px;
-    margin-left: 150px;
+    padding: 0px;
+    margin-left: 165px;
+    width: auto; 
 }
 
 .breadcrumb-item {
@@ -244,16 +385,10 @@ i {
     color: var(--bs-red);
 }
 
-
-#submenu {
-    display: inline-block;
-    margin-right: 80px;
-}
-
 .category {
     list-style: none;
     padding: 0;
-    width: 230px;
+    width: 230px; 
 }
 
 .menu-item {
@@ -273,7 +408,6 @@ i {
 .menu-item:hover {
     color: var(--bs-red);
 }
-
 
 .subcategory {
     display: none;
@@ -319,30 +453,41 @@ i {
     color: var(--bs-red);
 }
 
+
+
 #app {
-    display: inline-block;
-    position: relative;
-    left: 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; 
+    flex-wrap: wrap; 
 }
 
+#submenu {
+    flex: 0 0 230px; 
+    margin-right: 80px; 
+    margin-left: 80px;
+}
 
 .products-container {
-    display: inline-block;
-    vertical-align: top;
-    width: 950px;
-    margin-bottom: 50px;
-    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 35px; 
+    justify-content: flex-start;
+    margin: 20px 0px;
+    padding-right: 50px;
 }
 
 .products {
-    display: inline-block;
     border: solid 1px #ddd;
     border-radius: 10px;
-    margin: 20px 60px 25px 0px;
     animation: fadeIn 1s ease-out;
     transition: transform 0.3s ease;
-    max-width: 250px;
-    vertical-align: top; 
+    flex: 1 1 calc(33.333% - 35px); 
+    max-width: calc(33.333% - 35px);
+    min-width: 250px;
+    box-sizing: border-box; 
+    margin-bottom: 10px;
 }
 
 @keyframes fadeIn {
@@ -361,20 +506,20 @@ i {
 }
 
 .productimg {
-    width: 250px;
-    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
 }
 
 .products h3,
 h6 {
-    margin: 0px;
-    padding-left: 15px;
-    color: var(--bs-gray);
+    margin: 0;
+    padding-left: 20px;
     font-weight: 500;
+    color: var(--bs-gray);
 }
 
 .products h3 {
-    margin: 5px 0px;
+    margin: 10px 0;
     font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
@@ -382,7 +527,7 @@ h6 {
 }
 
 .products h6 {
-    margin: 10px 0px 15px 0px;
+    margin: 10px 0 20px 0;
     font-size: 12px;
 }
 
@@ -393,14 +538,16 @@ h6 {
 
 .pagination {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     margin-bottom: 50px;
+    margin-top: 25px;
+    width: 100%;
+    box-sizing: border-box;
 }
-
 
 .pagination button {
     padding: 5px 10px;
-    margin: 5px; 
+    margin: 5px;
     border: 1px solid var(--bs-gray);
     color: var(--bs-gray);
     opacity: 0.5;
@@ -412,13 +559,56 @@ h6 {
 
 .pagination .active {
     font-weight: 400;
-    background-color:transparent;
+    background-color: transparent;
     border-color: var(--bs-red);
-    color:var(--bs-red);
+    color: var(--bs-red);
     opacity: 1;
 }
 
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    justify-content: flex-start;
+}
 
+#dropdown-container {
+    display: none;
+    width: 100%;
+    text-align: center; 
+    margin: 20px 0;
+}
+
+.dropdown-menus {
+    display: none;
+}
+
+
+.dropdown-select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.custom-arrow {
+    position: relative;
+    right: 30px;
+    vertical-align:text-top;
+    font-size: 15px; 
+    color: var(--bs-gray);
+    pointer-events: none;
+    z-index: 1; 
+}
+
+select {
+    -webkit-appearance: none; /* 移除 WebKit 瀏覽器中的預設樣式 */
+    -moz-appearance: none; /* 移除 Firefox 中的預設樣式 */
+    appearance: none; /* 移除其他瀏覽器中的預設樣式 */
+    background-color: white; 
+    border-radius: 5px;
+    padding: 5px 15px;
+    box-shadow: none; 
+}
 
 #footer {
     background-color: #f8f9fa;
@@ -451,4 +641,241 @@ h6 {
 
 .back-to-top.show {
     opacity: 1;
+}
+
+@media (max-width: 1200px) {
+    /* For large screens */
+    
+    #header{
+        top: 10px;
+    }
+
+    #nav, #search {
+        display: none;
+    }
+    #link {
+        display: flex; 
+        position: absolute;
+        right:80px;
+    }
+
+    #link li{
+        font-size: 28px;
+    }
+
+    #menu {
+        width: 30%;
+    }
+    .menu-icon {
+        display: block; 
+    }
+
+}
+
+@media (max-width: 992px) {
+    /* For medium screens (tablets) */
+    
+    #header{
+        top: 10px;
+    }
+
+    #nav,
+    #search {
+        display: none;
+    }
+
+    #link li{
+        margin: 0px 15px;
+        font-size: 25px;
+    }
+
+    #menu {
+        width: 35%;
+    }
+
+    .headline {
+        margin-top: 90px;
+        padding-left: 50px;
+    }
+
+    #submenu,.breadcrumb {
+        display: none;
+    }
+
+    #dropdown-container {
+        display: block;
+        margin-bottom: 50px;
+    }
+
+    #dropdown-menus {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .dropdown-select {
+        font-size: 16px;
+        width: 100%;
+        max-width: 500px;
+        color: var(--bs-gray);
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff; 
+        font-size: 16px;
+    }
+
+    .dropdown-select:focus {
+        outline: none; 
+        border-color: #ddd; 
+    }
+
+    .dropdown-select::-ms-expand {
+        display: none; /* 移除 IE 的默认箭头 */
+    }
+
+    .dropdown-select::after {
+        content: ''; /* 移除自定义箭头样式 */
+    }
+
+
+    .dropdown-select option:focus {
+        background-color: #fff;
+        color: var(--bs-gray);
+    }
+
+    .products-container{
+        justify-content: center;
+        margin: 0px;
+        padding: 0px 20px;
+    }
+
+    .products {
+        flex: 1 1 100%; 
+        max-width: 30%;
+        min-width: 250px;
+    }
+
+    .back-to-top {
+        font-size: 40px; 
+    }
+}
+
+@media (max-width: 768px) {
+    /* For small screens (phones) */
+
+    #header{
+        top: 10px;
+    }
+    .penrote-logo{
+        margin:0px 15px;
+    }
+
+    #nav,
+    #search {
+        display: none;
+    }
+
+    #link li{
+        margin: 0px 12px;
+        font-size: 23px;
+    }
+
+    #menu{
+        width: 40%;
+    }
+
+    #menu li{
+        font-size: 15px;
+    }
+
+    .headline {
+        margin-top: 90px;
+        padding-left: 50px;
+    }
+
+    #submenu,.breadcrumb {
+        display: none;
+    }
+
+    #dropdown-container {
+        display: block;
+        margin-bottom: 50px;
+    }
+
+    #dropdown-menus {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .dropdown-select {
+        font-size: 16px;
+        width: 100%;
+        max-width: 300px;
+        color: var(--bs-gray);
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+        font-size: 15px;
+    }
+
+    .dropdown-select:focus {
+        outline: none; 
+        border-color: #ddd; 
+    }
+
+    .dropdown-select::-ms-expand {
+        display: none; /* 移除 IE 的默认箭头 */
+    }
+
+    .dropdown-select::after {
+        content: ''; /* 移除自定义箭头样式 */
+    }
+
+
+    .dropdown-select option:focus {
+        background-color: #fff;
+        color: var(--bs-gray);
+    }
+
+    .products-container{
+        justify-content: center;
+        margin: 0px;
+        padding: 0px 15px;
+    }
+
+    .products {
+        flex: 1 1 100%; 
+        max-width: 40%;
+        min-width: 250px;
+    }
+
+
+    .back-to-top {
+        font-size: 35px; 
+    }
+}
+
+@media (max-width: 480px) {
+    /* For extra small screens (phones in portrait) */
+    
+    #nav,
+    #search {
+        display: none;
+    }
+
+    #link li{
+        margin: 0px 10px;
+        font-size: 20px;
+    }
+
+    #menu{
+        width: 40%;
+    }
+
+    .back-to-top {
+        font-size: 30px; 
+    }
 }
