@@ -636,13 +636,17 @@ i {
 @media (max-width: 480px) {
     /* For extra small screens (phones in portrait) */
     
+    .penrote-logo {
+        margin:0px 8px;
+    }
+
     #nav,
     #search {
         display: none;
     }
 
     #link li{
-        margin: 0px 10px;
+        margin: 0px 8px;
         font-size: 20px;
     }
 
@@ -652,6 +656,10 @@ i {
 
     .products h1 {
         font-size: 20px;
+    }
+
+    .category {
+        margin: 20px 20px;
     }
 
     .category h4{

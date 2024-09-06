@@ -756,18 +756,57 @@ i {
 @media (max-width: 480px) {
     /* For extra small screens (phones in portrait) */
     
+    .penrote-logo {
+        margin:0px 8px;
+    }
+
     #nav,
     #search {
         display: none;
     }
 
     #link li{
-        margin: 0px 10px;
+        margin: 0px 8px;
         font-size: 20px;
     }
 
     #menu{
         width: 40%;
+    }
+
+    .thumbnails{
+        flex:1 0 80px;
+        max-height: 300px;
+        margin-left: 5%;
+    }
+
+    .image-scroll{
+        flex:1 0 180px;
+        max-height: 300px;
+        max-width: 300px;
+        margin-right: 5%;
+    }
+
+    .products{
+        flex: 1 0 385px;
+        max-width: 480px;
+        margin: 20px 15%;
+        padding: 10px;
+    }
+
+    .products .name {
+        font-size: 20px;
+    }
+
+
+    .products p{
+        margin: 10px;
+        font-size: 14px;
+    }
+
+    .accordion-container{
+        margin-top: -15px;
+        margin-bottom: 50px;
     }
 
     .back-to-top {

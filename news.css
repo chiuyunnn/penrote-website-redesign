@@ -695,18 +695,26 @@ i {
 @media (max-width: 480px) {
     /* For extra small screens (phones in portrait) */
     
+    .penrote-logo {
+        margin:0px 8px;
+    }
+
     #nav,
     #search {
         display: none;
     }
 
     #link li{
-        margin: 0px 10px;
+        margin: 0px 8px;
         font-size: 20px;
     }
 
     #menu{
         width: 40%;
+    }
+
+    .modal-content{
+        top:50px;
     }
 
     .back-to-top {
