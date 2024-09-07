@@ -34,7 +34,7 @@
 
 <img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.016252.gif" width="400px">   
 
-詳細對比：[pdf檔案連結](https://drive.google.com/file/d/1jIDcokThFlO5Mnle_42LciBc2_VbdIwQ/view?usp=sharing)   
+
 
 ※ 商品僅部分匯入，並非官網全部品項。
 
@@ -64,3 +64,4 @@
 ## Penrote 筆樂 官網原型
 
 - https://www.penrote.com.tw
+- 詳細對比：[pdf 檔案連結](https://drive.google.com/file/d/1jIDcokThFlO5Mnle_42LciBc2_VbdIwQ/view?usp=sharing)
