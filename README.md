@@ -16,6 +16,8 @@
 - 調整商品詳細頁面的排版，將部分資訊用手風琴收起。
 - RWD 響應式網頁設計   
 
+詳細對比：pdf檔案連結（https://drive.google.com/file/d/1jIDcokThFlO5Mnle_42LciBc2_VbdIwQ/view?usp=sharing）   
+
 ※ 商品僅部分匯入，並非官網全部品項。
 
 
