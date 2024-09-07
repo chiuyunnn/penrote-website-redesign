@@ -15,14 +15,22 @@
 - RWD 響應式網頁設計
 
 <img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.606624.gif" width="600px">
+
 <img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.536228.gif" width="600px">
+
 <img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.661340.gif" width="600px">
+
 <img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.781841.gif" width="600px">
+
 <img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.723251.gif" width="600px">
+
 <img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.837856.gif" width="600px">
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.078795.gif" width="600px">
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.956926.gif" width="600px">
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.016252.gif" width="600px">
+
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.078795.gif" width="400px">
+
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.956926.gif" width="400px">
+
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.016252.gif" width="400px">
 
 詳細對比：[pdf檔案連結](https://drive.google.com/file/d/1jIDcokThFlO5Mnle_42LciBc2_VbdIwQ/view?usp=sharing)   
 
