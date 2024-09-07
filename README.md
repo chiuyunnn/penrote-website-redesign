@@ -12,17 +12,17 @@
 - 簡化商品頁面的類別層級，避免操作複雜。
 - 隱藏重複的選單，讓漢堡選單僅在小螢幕時出現。
 - 調整商品詳細頁面的排版，將部分資訊用手風琴收起。
-- RWD 響應式網頁設計   
+- RWD 響應式網頁設計
 
-https://github.com/user-attachments/assets/f8634014-9f33-4888-b823-f13edb984136
-https://github.com/user-attachments/assets/a785528d-bf4a-4a19-923e-18e43bc21bac
-https://github.com/user-attachments/assets/76ff50c7-d4ce-4b0f-a744-a66d28397481
-https://github.com/user-attachments/assets/a52dbb38-3174-400b-9ba3-e99cb7e603c9
-https://github.com/user-attachments/assets/b46dfe9e-5d1b-47fd-8987-9d29a668f4e2
-https://github.com/user-attachments/assets/97bce422-ed75-4d9c-a6a2-3b4fb3143cad
-https://github.com/user-attachments/assets/d72f0016-4950-48cc-9731-8c5a34c650f5
-https://github.com/user-attachments/assets/e0e0035e-29c4-49ec-bf9a-a0f78c25e6a2
-https://github.com/user-attachments/assets/942ed945-0587-40a9-b6c8-b9c41731b94b
+![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.606624.gif)
+![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.536228.gif)
+![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.661340.gif)
+![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.781841.gif)
+![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.723251.gif)
+![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.837856.gif)
+![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.078795.gif)
+![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.956926.gif)
+![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.016252.gif)
 
 詳細對比：[pdf檔案連結](https://drive.google.com/file/d/1jIDcokThFlO5Mnle_42LciBc2_VbdIwQ/view?usp=sharing)   
 
