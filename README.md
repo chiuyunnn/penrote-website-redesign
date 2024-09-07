@@ -4,7 +4,8 @@
 
 ## 項目描述
 
-此項目為個人練習作品。因過去工作時常需要透過競品分析，來找出自家品牌的不足之處進行完善。其中有一項極需調整，卻沒有人會做的就是 —— 網頁。而這一點就成了我想親自寫出來的動機，以文具品牌「 Penrote 筆樂」的官網作為練習目標，寫出能正常操作的功能，並優化視覺設計(UI)與使用體驗(UX)。    
+此項目為個人練習作品。因過去工作時常需要透過競品分析，來找出自家品牌的不足之處進行完善。其中有一項極需調整，卻沒有人會做的就是 —— 網頁。   
+而這一點就成了我想親自寫出來的動機，以文具品牌「 Penrote 筆樂」的官網作為練習目標，寫出能正常操作的功能，並優化視覺設計(UI)與使用體驗(UX)。    
 
 - 改善原本擁擠且對齊不統一的排版，採用較為簡潔乾淨的視覺。
 - 新增簡易動畫及 hover 效果，增加互動體驗。
@@ -14,23 +15,23 @@
 - 調整商品詳細頁面的排版，將部分資訊用手風琴收起。
 - RWD 響應式網頁設計
 
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.606624.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.606624.gif" width="600px">   
 
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.536228.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.536228.gif" width="600px">   
 
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.661340.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.661340.gif" width="600px">   
 
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.781841.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.781841.gif" width="600px">   
 
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.723251.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.723251.gif" width="600px">   
 
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.837856.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.837856.gif" width="600px">   
 
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.078795.gif" width="400px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.078795.gif" width="400px">   
 
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.956926.gif" width="400px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.956926.gif" width="400px">   
 
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.016252.gif" width="400px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.016252.gif" width="400px">   
 
 詳細對比：[pdf檔案連結](https://drive.google.com/file/d/1jIDcokThFlO5Mnle_42LciBc2_VbdIwQ/view?usp=sharing)   
 
