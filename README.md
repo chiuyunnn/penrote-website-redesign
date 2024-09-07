@@ -14,16 +14,15 @@
 - 調整商品詳細頁面的排版，將部分資訊用手風琴收起。
 - RWD 響應式網頁設計
 
-<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.606624.gif" width="500px">
-![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.606624.gif)
-![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.536228.gif)
-![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.661340.gif)
-![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.781841.gif)
-![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.723251.gif)
-![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.837856.gif)
-![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.078795.gif)
-![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.956926.gif)
-![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.016252.gif)
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.606624.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.536228.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.661340.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.781841.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.723251.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.837856.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.078795.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.956926.gif" width="600px">
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415577.016252.gif" width="600px">
 
 詳細對比：[pdf檔案連結](https://drive.google.com/file/d/1jIDcokThFlO5Mnle_42LciBc2_VbdIwQ/view?usp=sharing)   
 
