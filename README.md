@@ -14,6 +14,7 @@
 - 調整商品詳細頁面的排版，將部分資訊用手風琴收起。
 - RWD 響應式網頁設計
 
+<img src="https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.606624.gif" width="500px">
 ![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.606624.gif)
 ![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.536228.gif)
 ![image](https://github.com/chiuyunnn/penrote-website-redesign-gif/blob/main/747415576.661340.gif)
